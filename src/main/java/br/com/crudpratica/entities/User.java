@@ -1,12 +1,15 @@
 package br.com.crudpratica.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,8 +25,8 @@ public class User implements Serializable{
 	private String email;
 	private String phone;
 	private String password;
-	
-	//List<Order> order;
+	@OneToMany(mappedBy = "cliente")
+	private List<Order> order = new ArrayList<>();
 	
 	public User() {
 		
@@ -77,13 +80,11 @@ public class User implements Serializable{
 		this.password = password;
 	}
 
-//	public List<Order> getOrder() {
-//	return order;
-//}
-//
-//public void setOrder(List<Order> order) {
-//	this.order = order;
-//}
+	public List<Order> getOrder() {
+	return order;
+}
+
+
 	
 	@Override
 	public int hashCode() {
